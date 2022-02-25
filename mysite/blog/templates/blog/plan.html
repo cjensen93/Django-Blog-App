@@ -1,0 +1,105 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Website Plan</title>
+    <link rel="stylesheet" href="{% static 'blog/style.css' %}">
+</head>
+<body>
+
+    <!-- COMMON TABLE OF CONTENTS -->
+    <div>
+    <h3 class="tableFont"><u>Table of Contents</u></h3>
+    <ol id="tableOfContents">
+        <li class="tableColor"><a href="{% url 'blog:index' %}">Bertolli's Blog</a></li>
+        <li class="tableColor"><a href="{% url 'blog:about' %}">About Bertolli</a></li>
+        <li class="tableColor"><a href="{% url 'blog:techWithCSS' %}">Tech Tips with CSS</a></li>
+        <li class="tableColor"><a href="{% url 'blog:techWithoutCSS' %}">Tech Tips without CSS</a></li>
+        <li class="tableColor">This site has been visited {{visitsLen}} time{{visits | pluralize}}</li>
+    </ol>
+    <br>
+    </div>
+
+    <h2>Time Spent On Assignment</h2>
+    <ul>
+        <li>Oct 15th: 3 hours on plan and design</li>
+        <li>Oct 16th: 8 hours on coding on main coding</li>
+        <li>Oct 17th: 6 hours on finishing code and cleaning up little details</li>
+    </ul>
+    <br>
+
+    <h1>Main Files to Focus On</h1>
+
+    <h2>0002_populate.py</h2>
+    <p>This one will house the database data that will come included in the assignment. It will populate the website with 4 blog posts and all its data, and a couple of comments for each blog. It will also come with 3 pre-generated IP Addresses to populate that field.</p>
+    <p>I will make two methods on this page. One to populate the VisitorLog class, and one to populate the Blog and Comment classes. I will do this by using the appreg.get_model on each class. I will then create an instance of each model, and fill out the appropriate fields for it to fill with (ex: "first = Blog()" to create a new blog item, and then fill it by using things like "first.title = "). At the end, use .save() on each file. Also, call each method using migrations.RunPython in the "operations" list at the bottom of the page.</p>
+
+    <br>
+    <h2>templates/blog/HTML FILES</h2>
+    <p>For the most part, these will be the same as the old .html files from the last assignment. There are some changes, obviously, to fit the Django syntax, and the new blog elements.</p>
+    <p>At the top of each page, in the common table of contents section, a visitor counter will be implemented, to track how many times any of the pages have been loaded. At the bottom of the page, the last 10 visitors IP Address and time stamps will be displayed.</p>
+    <p>The link URLs are also setup a little differently, to fit in with Django's format. They need to be called in the django format, and can also pass an argument through with it.</p>
+    <p>The most important part of these sites will be concerning with the "forms" that it uses. These will be used to allow the user to create new posts, and have them appear on the page. These forms will link to the appropriate page (depending on if it's a blog or a comment), and must contain id's for the form.py to be able to parse the data from it.</p>
+    <p>They will also use the Django formatted "for" loops to call every post, and every comment inside each post. The home page will only show the 3 most recent posts (and only the first 100 words), and the archive page will show all blog posts.</p>
+
+    <br>
+    <h2>forms.py</h2>
+    <p>This page was created because it seemed necessary based on the Django documentation on how to parse data from the QuerySets that the database info is stored in.</p>
+    <p>This page will look very similar to the models.py page. But instead of using models, will use forms. Since all the data that will be passed through from the website can be interpreted as strings, every form can be forms.CharField. These forms will make it very easy for views.py to be able to break down each QuerySet and return the data contained in it.</p>
+
+    <br>
+    <h2>models.py</h2>
+    <p>As stated earlier, this page is very similar to forms.py. This page will be the basis for storing data in our database.</p>
+    <p>There will be 3 classes created in this file, all based off of "models.Model". The first will be VisitorLog (with variables 'when' and 'who'). The second will be Blog (with variables 'title', 'author', 'content', 'posted', and 'commentNumber'.) The last one will be Comment (with variables 'blog', 'commenter', 'email', 'content', and 'posted').</p>
+    <p>Just about all of those variables will be just to store the actual data. But the 'blog' part of Comment will be a foreign key, to reference to the actual blog that it is associated with.</p>
+
+    <br>
+    <h2>urls.py</h2>
+    <p>This page is very simple. It defines the paths that the website will take when a URL is requested. Every method from views.py should have a reference here to tell the website where and how to get to it.</p>
+
+    <br>
+    <h2>views.py</h2>
+    <p>This page is the trickiest of all of them, and works in conjuncture with each corresponding .html file to tell the web browser what to display.</p>
+    <p>Every path that is called needs a view. The views I'll create will be for the home, archive, entry, about, post, comment, plan, and the two techtips pages.</p>
+    <p>To me, the two most important things this page will do is to parse the information from the forms.py, and to create the context to pass onto the .html files.</p>
+    <p>There will be a couple main things I'll use to achieve these goals. The first will be to get the information from the database. This can be done in two ways: either by creating a variable, and setting it to be a list of all the objects of that type (ex: visits = list(VisitorLog.objects.all())). Or to filter a specific item using the 'get_object_or_404' method and something to filter it with (ex: blogEntry = get_object_or_404(Blog, pk=blog_id).</p>
+    <p>The way the website will get information from the user will be through the forms methods. They will use the information from the request.POST to build the new requested item (either a new blog or a new comment). It will use 'form.is_valid()' to verify the form. Then it will use 'form.cleaned_data['desired variable'] to extract the information from the QuerySet. It will then build the new item, just like in 0002_populate.py, and save it to the database.</p>
+
+    <br>
+    <h1>Other important pages</h1>
+
+    <h2>mysite/urls.py</h2>
+    <p>This page will be needed to tell the website how to get to each app. It will be the beginning of the URL after the "localhost:8000/" is entered. It will contain the blog.urls, the polls.urls, and the admin site.</p>
+
+    <br>
+    <h2>mysite/settings.py</h2>
+    <p>Inside this page, the blog and the polls apps will need to be included in the "INSTALLED_APPS" list. They will reference the apps.py in each respective app.</p>
+
+    <br>
+    <h2>Citation for the Lorem Ipsum text</h2>
+    <p>The text for my blog posts was found at <a href="https://generator.lorem-ipsum.info/">this</a> website, in the
+        <q>Lorem Ipsum: when, and when not to use it</q> section.</p>
+
+    <h2>Photo Citations</h2>
+    <p>The main portrait photo was obtained from <a href="https://stock.adobe.com/sk/search/images?k=funny+old+lady">
+        here</a>. Her skydiving photo is from
+        <a href="https://wisconsinskydivingcenter.com/blog/skydiving-age-limit-too-old-to-skydive/">this</a> website.
+        Her final "author" photo was found from this
+        <a href="https://media.istockphoto.com/photos/old-lady-doesnt-understand-laptop-picture-id542304950?k=20&m=542304950&s=170667a&w=0&h=3OZfu1_dRJ6-1rFHzGb0MPTx-9PUfWyvM1Ww7l0T2Oc=">
+        stock photo</a> website.</p>
+
+    {% if visits %}
+    <div>
+        <h2>List of Last {{visits | length }} Visitor{{visits | pluralize}} Time and IP Address</h2>
+        <ol>
+            {% for visitor in visits %}
+                <li>{{visitor.when}} - {{visitor.who}}</li>
+            {% endfor %}
+        </ol>
+    </div>
+    {% endif %}
+
+</body>
+</html>

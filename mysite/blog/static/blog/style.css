@@ -1,0 +1,62 @@
+p {
+    background-color: #b36260;
+}
+
+body {
+    background-color: darkgrey;
+    margin-left: 100px;
+    margin-right: 100px;
+    font-family: Calibri, serif;
+}
+
+#tableOfContents {
+    background-color: #b36260;
+    width: 145px;
+    padding: 20px;
+}
+
+li:nth-child(2n) {
+    background-color: #d69290;
+}
+
+code {
+    font-size: 1.10em
+}
+
+#blogList {
+    background-color: #d69290;
+    font-size: 1.05em;
+}
+
+h1{
+    background-color: #b36260;
+}
+
+h2, h3{
+    background-color: #b36260;
+    text-decoration: underline;
+}
+
+.codeHeader {
+    background-color: #b36260;
+}
+
+ul {
+    background-color: #b36260;
+}
+
+#titleFont {
+    font-size: 2.75em;
+}
+
+.comment {
+    background-color: #b36260;
+}
+
+.tableFont {
+    font-style: italic;
+}
+
+ol {
+    background-color: #b36260;
+}

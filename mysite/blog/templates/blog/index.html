@@ -1,0 +1,103 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!-- HEADER -->
+<head>
+    <meta charset="UTF-8">
+    <title>Bertolli's Blog</title>
+    <link rel="stylesheet" href="{% static 'blog/style.css' %}">
+</head>
+
+
+<!-- BODY -->
+<body>
+
+    <h1 id="titleFont">Bertolli's Blog</h1>
+
+    <!-- COMMON TABLE OF CONTENTS -->
+    <div>
+    <h3 class="tableFont"><u>Table of Contents</u></h3>
+    <ol id="tableOfContents">
+        <li class="tableColor"><a href="{% url 'blog:index' %}">Bertolli's Blog</a></li>
+        <li class="tableColor"><a href="{% url 'blog:about' %}">About Bertolli</a></li>
+        <li class="tableColor"><a href="{% url 'blog:techWithCSS' %}">Tech Tips with CSS</a></li>
+        <li class="tableColor"><a href="{% url 'blog:techWithoutCSS' %}">Tech Tips without CSS</a></li>
+        <li class="tableColor">This site has been visited {{visitsLen}} time{{visits | pluralize}}</li>
+    </ol>
+    <br>
+    </div>
+
+    <div id="blogList">
+        <hr />
+        <p>
+            <a href="{% url 'blog:index' %}">Blog Home (3 Most Recent Posts)</a> - - - - -
+            <a href="{% url 'blog:archive' %}">Blog Archive (All Posts)</a>
+        </p>
+        <hr />
+    </div>
+    <br>
+
+    <!-- BLOG POST SECTION -->
+    {% if blogPost %}
+        {% for blogPost in blogPost %}
+            <div>
+                <h1>{{blogPost.title}}</h1>
+                <h2>Written by {{blogPost.author}} on {{blogPost.posted}}</h2>
+                <p>{{blogPost.content | truncatewords:100}}...
+                    <a href="{% url 'blog:entry' blogPost.id %}">(View Full Post)</a>
+                </p>
+                <p>{{blogPost.commentNumber}} comments</p>
+            </div>
+            <br>
+            <br>
+        {% endfor %}
+    {% else %}
+        <p>No blog posts are available</p>
+    {% endif %}
+
+    <!-- CREATE BLOG POST SECTION -->
+    <div>
+        <form action="http://localhost:8000/blog/post/" method="POST">
+            <header>
+                <h2>Create your own blog post</h2>
+            </header>
+            <div>
+                <label for="title">Blog Title</label>
+                <input id="title" name="title" value="Title" maxlength="128" >
+            </div>
+            <div>
+                <label for="author">Author</label>
+                <input id="author" name="author" value="Author" maxlength="128">
+            </div>
+            <div>
+                <textarea id="content" name="content" rows="10" cols="120" maxlength="10000">Your post here</textarea>
+            </div>
+            <div>
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+    <br>
+
+
+
+
+
+
+    <!-- ### DATABASE SECTION FOR VISITORS ### -->
+    {% if visits %}
+    <div>
+    <h2>List of Last {{visits | length }} Visitor{{visits | pluralize}} Time and IP Address</h2>
+    <ol>
+        {% for visitor in visits %}
+            <li>{{visitor.when}} - {{visitor.who}}</li>
+        {% endfor %}
+    </ol>
+    </div>
+    {% endif %}
+
+</body>
+</html>

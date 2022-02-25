@@ -1,0 +1,99 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!-- HEADER -->
+<head>
+    <meta charset="UTF-8">
+    <title>About Bertolli</title>
+    <link rel="stylesheet" href="{% static 'blog/style.css' %}">
+</head>
+
+
+<!-- BODY -->
+<body>
+
+    <h1 id="titleFont">About Bertolli</h1>
+
+    <!-- COMMON TABLE OF CONTENTS -->
+    <div>
+    <h3 class="tableFont"><u>Table of Contents</u></h3>
+    <ol id="tableOfContents">
+        <li class="tableColor"><a href="{% url 'blog:index' %}">Bertolli's Blog</a></li>
+        <li class="tableColor"><a href="{% url 'blog:about' %}">About Bertolli</a></li>
+        <li class="tableColor"><a href="{% url 'blog:techWithCSS' %}">Tech Tips with CSS</a></li>
+        <li class="tableColor"><a href="{% url 'blog:techWithoutCSS' %}">Tech Tips without CSS</a></li>
+        <li class="tableColor">This site has been visited {{visitsLen}} time{{visits | pluralize}}</li>
+    </ol>
+    <br>
+    </div>
+
+
+    <!-- ### FIRST PICTURE/POST ###-->
+    <div>
+    <h2>Biography of Bertolli</h2>
+    <img src="../../static/blog/images/BertolliPortrait.jpg"
+         alt="Portrait of Bertolli Chuckwagon"
+         title="Picture of Bertolli taken at her home in Dublin"/>
+
+    <p><strong>Bertolli Marsha "Chip" Chuckwagon</strong>, usually referred to simply as "Bert", is a world-class
+    author and critic. She is known most prominently for her work as the main editor for the famous "Odyssey" by Homer.
+    The first known record of Bert is thought to be a famous cave painting found outside of Berlin. Carbon dating puts
+    this drawing to somewhere around 4000 BCE. Bert is thought to be immortal, due also to the fact that "Odyssey" was
+    written in the 8th century BCE. This is also thought to be true because of her numerous world records, which include
+    "Most Times Survived Jumping Off The Burj Khalifa Unaided and Surviving." In more recent years, she has chosen to
+    settle down from these wild adventures, and now resides in a small cottage outside of Dublin, Ireland.</p>
+    <br>
+    </div>
+
+
+    <!-- ### SECOND PICTURE/POST ###-->
+    <div>
+    <h2>Adrenaline Junkie</h2>
+    <img src="../../static/blog/images/BertolliSkydiving.jpg"
+         alt="Bertolli skydiving at an old age"
+         title="Bertolli on her 1000th skydive"/>
+
+    <p>Despite the appearance of her old age, Bert is still quite capable of doing amazing feats. One of her proudest
+    and most notable skydiving accomplishments was being the first person to do so without a parachute. From an
+    interview earlier this year, she says it also happen on the first ever flight by the Wright brothers. <q><em>I had
+    just fallen asleep on the wings of the first plane they ever made,</em></q> Bertolli is quoted saying, <q><em>when
+    suddenly it took off. I was able to hold on until we made it about 100 feet in the air when I lost my grip. But
+    since I'm an immortal being from the shadow realm, I easily survived the fall.</em></q> Bert is also the first
+    known person to summit Mount Everest from base camp without the assistance of oxygen, twice in the same day. She
+    also claims to know exactly where Amelia Earhart flew to and retired, but wants to keep that to herself.</p>
+    <br>
+    </div>
+
+
+    <!-- ### THIRD PICTURE/POST ###-->
+    <div>
+    <h2>Author Extraordinaire</h2>
+    <img src="../../static/blog/images/BertolliWriting.jpg"
+         alt="Bertolli writing a book on her laptop"
+         title="Bertolli working on the 10th book in her 'Death and Fire' series"/>
+
+    <p>From a very young age, which no one knows exactly when that was, Bertolli had a passion for writing. She credits
+    a lot of her ideas from the large amount of dark things she sees from the shadow realm. Much of her time is now
+    spent either meditating, or writing down her visions. Her series "Death and Fire", is about to get its tenth
+    installment in the spring of 2022. With over 250 million copies sold, it's the best-selling series of all time.
+    Bertolli says you can expect at least ten more books in the series.</p>
+    <br>
+    </div>
+
+    <!-- ### TEST DATABASE SECTION FOR VISITORS ### -->
+    {% if visits %}
+    <div>
+    <h2>List of  Time of Visit and Visitor's IP Address</h2>
+    <ol>
+        {% for visitor in visits %}
+            <li>{{visitor.when}} - {{visitor.who}}</li>
+        {% endfor %}
+    </ol>
+    </div>
+    {% endif %}
+
+</body>
+</html>

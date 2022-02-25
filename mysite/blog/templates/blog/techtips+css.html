@@ -1,0 +1,188 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!-- HEADER -->
+<head>
+    <meta charset="UTF-8">
+    <title>Tech Tips + CSS</title>
+    <link rel="stylesheet" href="{% static 'blog/style.css' %}">
+</head>
+
+
+<!-- BODY -->
+<body>
+
+    <h1 id="titleFont">Tech Tips (styled with CSS)</h1>
+
+    <!-- COMMON TABLE OF CONTENTS -->
+    <div>
+    <h3 class="tableFont"><u>Table of Contents</u></h3>
+    <ol id="tableOfContents">
+        <li class="tableColor"><a href="{% url 'blog:index' %}">Bertolli's Blog</a></li>
+        <li class="tableColor"><a href="{% url 'blog:about' %}">About Bertolli</a></li>
+        <li class="tableColor"><a href="{% url 'blog:techWithCSS' %}">Tech Tips with CSS</a></li>
+        <li class="tableColor"><a href="{% url 'blog:techWithoutCSS' %}">Tech Tips without CSS</a></li>
+        <li class="tableColor">This site has been visited {{visitsLen}} time{{visits | pluralize}}</li>
+    </ol>
+    <br>
+    </div>
+
+
+    <!-- ### W3C Validators ### -->
+    <div>
+    <h2>W3C Validators</h2>
+    <ul>
+        <li><a href="https://validator.w3.org/">HTML Validator</a></li>
+        <li><a href="https://jigsaw.w3.org/css-validator/">CSS Validator</a></li>
+    </ul>
+    </div>
+
+
+    <!-- ### HTML ELEMENTS ### -->
+    <div>
+    <h2>HTML Elements</h2>
+
+        <!-- IMG ELEMENT -->
+        <h3><code class="codeHeader"><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img">&#60;img&#62;</a></code></h3>
+        <ul>
+            <li>Purpose: Embed an image into a webpage</li>
+            <li>Required attributes: src</li>
+            <li>Other common attributes: alt, title, width, height</li>
+            <li>Display: Default is inline</li>
+            <li>Example: <code>&#60;img src="orange.jpg" alt="Picture of an orange"/&#62;</code></li>
+        </ul>
+
+        <!-- DIV ELEMENT -->
+        <h3><code class="codeHeader"><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/div">&#60;div&#62;</a></code></h3>
+        <ul>
+            <li>Purpose: Container to help the flow of content</li>
+            <li>Required attributes: N/A</li>
+            <li>Other common attributes: class</li>
+            <li>Display: N/A</li>
+            <li>Example: <code>&#60;div class="thesis"&#62;&#60;/div&#62;</code></li>
+        </ul>
+
+        <!-- ANCHOR ELEMENT -->
+        <h3><code class="codeHeader"><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a">&#60;a&#62;</a></code></h3>
+        <ul>
+            <li>Purpose: Create hyperlinks to other destinations on the internet</li>
+            <li>Required attributes: N/A</li>
+            <li>Other common attributes: href, download</li>
+            <li>Display: Default is inline</li>
+            <li>Example: <code>&#60;a href="https://www.amazon.com/"&#62;Amazon&#60;/a&#62;</code></li>
+        </ul>
+
+        <!-- ANCHOR ELEMENT -->
+        <h3><code class="codeHeader"><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Heading_Elements">&#60;h1&#62;-&#60;h6&#62;</a></code></h3>
+        <ul>
+            <li>Purpose: Used as headers for websites, with various font sizes</li>
+            <li>Required attributes: N/A</li>
+            <li>Other common attributes: N/A</li>
+            <li>Display: Default is block-level</li>
+            <li>Example: <code>&#60;h1&#62;Bertolli's Blog&#60;/h1&#62;</code></li>
+        </ul>
+    <br>
+    </div>
+
+
+    <!-- ### HTML CHARACTER ENTITIES ### -->
+    <div>
+    <h2>HTML Character Entities</h2>
+
+        <!-- LESS THAN SYMBOL -->
+        <h3><code class="codeHeader"><a href="https://developer.mozilla.org/en-US/docs/Glossary/Entity">&#60;</a></code></h3>
+        <ul>
+            <li>Name: Less Than symbol</li>
+            <li>How to use: <strong>&</strong><strong>lt;</strong> or <strong>&amp;&#35;60;</strong></li>
+        </ul>
+
+        <!-- GREATER THAN SYMBOL -->
+        <h3><code class="codeHeader"><a href="https://developer.mozilla.org/en-US/docs/Glossary/Entity">&#62;</a></code></h3>
+        <ul>
+            <li>Name: Greater Than symbol</li>
+            <li>How to use: <strong>&</strong><strong>gt;</strong> or <strong>&amp;&#35;62;</strong></li>
+        </ul>
+
+        <!-- AMPERSAND SYMBOL -->
+        <h3><code class="codeHeader"><a href="https://developer.mozilla.org/en-US/docs/Glossary/Entity">&</a></code></h3>
+        <ul>
+            <li>Name: Ampersand symbol</li>
+            <li>How to use: <strong>&</strong> or <strong>&</strong><strong>amp;</strong></li>
+        </ul>
+    <br>
+    </div>
+
+
+    <!-- ### CSS SELECTORS ### -->
+    <div>
+    <h2>CSS Selectors</h2>
+
+        <!-- ELEMENT -->
+        <h3><code class="codeHeader"><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Type_selectors">element</a></code></h3>
+        <ul>
+            <li>Purpose: It selects all elements of a given type on a page. Useful for general styling</li>
+            <li>How to Use: Using <code>h1 { font-style: italic; }</code> will make all the text within every h1 element
+                italicized</li>
+        </ul>
+
+        <!-- CLASS -->
+        <h3><code class="codeHeader"><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Class_selectors">.class</a></code></h3>
+        <ul>
+            <li>Purpose: Lets you assign different properties to multiple elements manually</li>
+            <li>How to Use: Using <code> .style1 { background-color: blue; }</code> can give many elements with the
+            .style1 selector a blue background</li>
+        </ul>
+
+        <!-- ID -->
+        <h3><code class="codeHeader"><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/ID_selectors">#id</a></code></h3>
+        <ul>
+            <li>Purpose: Lets you assign a single type of element properties</li>
+            <li>How to Use: Using <code> #id { color: skyblue; }</code> will change the font color of a single element
+            containing that ID to skyblue</li>
+        </ul>
+
+        <!-- NTH CHILD -->
+        <h3><code class="codeHeader"><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/:nth-child">:nth-child</a></code></h3>
+        <ul>
+            <li>Purpose: Can be used to assign properties to a group of siblings based on their position</li>
+            <li>How to Use: Using <code> :nth-child(3n) { width: 200px; }</code> would select every third child in a
+            group of siblings to set the width to 200 pixels</li>
+        </ul>
+    <br>
+    </div>
+
+
+    <!-- ### CSS PROPERTIES ### -->
+    <div>
+    <h2>CSS Properties</h2>
+
+        <!-- BACKGROUND COLOR -->
+        <h3><code class="codeHeader"><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/background-color">background-color</a></code></h3>
+        <ul>
+            <li>Purpose: Sets the background of an element to a specific color</li>
+            <li>How to Use: It accepts many values, including known common names (brown), rgb (150, 150, 100), rgba
+                (100, 255, 255, 0.6), hexadecimal (#b36260), and many others</li>
+        </ul>
+
+        <!-- FONT STYLE -->
+        <h3><code class="codeHeader"><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/font-style">font-style</a></code></h3>
+        <ul>
+            <li>Purpose: Sets whether the font in an element are stylized</li>
+            <li>How to Use: It accepts the values of normal, italic, and oblique [degree].</li>
+        </ul>
+
+        <!-- PADDING -->
+        <h3><code class="codeHeader"><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/padding">padding</a></code></h3>
+        <ul>
+            <li>Purpose: Sets the spacing on all four sides of an element at the same time</li>
+            <li>How to Use: It accepts values of 10px (for all sides), 15% 20% (for vertical and
+            horizontal), 2em 3em 2em (for top, horizontal, bottom), 15px 5% 2em 0 (for top, right, bottom, left)</li>
+        </ul>
+    <br>
+    </div>
+
+</body>
+</html>
